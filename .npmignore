@@ -1,0 +1,5 @@
+meta-function.json
+node_modules
+tsconfig.json
+src/*
+index.ts
