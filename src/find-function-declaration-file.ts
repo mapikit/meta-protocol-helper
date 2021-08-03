@@ -5,7 +5,7 @@ import { ValidationErrorCodes } from "./error-codes";
 const fsPromise = FS.promises;
 
 /**
- * Finds the `meta-function.json` file
+ * Finds the `meta-protocol.json` file
  * 
  * This function either finds the file and yields its contents as a string
  * or throws with an error

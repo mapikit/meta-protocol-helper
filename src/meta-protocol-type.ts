@@ -1,6 +1,6 @@
-import { ObjectDefinition } from "./object-definition/object-definition-type";
+import { ObjectDefinition } from "meta-function-helper";
 
-export interface MetaFunction {
+export interface MetaProtocol {
   functionName : string;
   description : string;
   author ?: string;
