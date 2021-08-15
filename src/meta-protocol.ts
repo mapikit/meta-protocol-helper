@@ -1,6 +1,4 @@
-export interface FunctionManager {
-  get (functionName : string) : Function;
-}
+import { FunctionManager } from "meta-function-helper";
 
 export abstract class MetaProtocol<ProtocolConfig> {
   public constructor (

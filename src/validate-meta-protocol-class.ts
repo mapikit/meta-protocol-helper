@@ -13,6 +13,7 @@ const stubManager = {
 export class ValidateMetaProtocolClass {
   public constructor (
     private readonly protocolDefinition : BuiltMetaProtocolDefinition,
+    private readonly filePath : string = process.cwd(),
   ) {
     this.execute = this.execute.bind(this);
     this.importClass = this.importClass.bind(this);
@@ -48,12 +49,12 @@ export class ValidateMetaProtocolClass {
     arg1 : unknown, arg2 : FunctionManager
   ) => T> {
     const entrypointPath = this.protocolDefinition.entrypoint;
-    const importedAsset = import(join(process.cwd(), entrypointPath));
+    const importedAsset = import(join(this.filePath, entrypointPath));
 
     const result = (await importedAsset)[this.protocolDefinition.className];
 
     if (result === undefined) {
-      throw Error(error(ValidationErrorCodes.V11P) + `: "${join(process.cwd(), entrypointPath)}"`)
+      throw Error(error(ValidationErrorCodes.V11P) + `: "${join(this.filePath, entrypointPath)}"`)
     }
 
     return result;
