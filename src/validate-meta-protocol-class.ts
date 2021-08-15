@@ -50,7 +50,6 @@ export class ValidateMetaProtocolClass {
   ) => T> {
     const entrypointPath = this.protocolDefinition.entrypoint;
     const path = join(this.filePath, entrypointPath);
-    console.log(path)
     const importedAsset = import(path);
 
     const result = (await importedAsset)[this.protocolDefinition.className];
