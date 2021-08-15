@@ -8,7 +8,11 @@ import { BuiltMetaProtocolDefinition } from "./meta-protocol-type";
 import { isMetaFunction } from "meta-function-helper/dist/src/is-meta-function";
 import { MetaFunction } from "meta-function-helper";
 
-export const validateProtocolStringConfiguration = async (configurationData : string) => {
+export type ExecConfig = {
+  filePath ?: string
+}
+
+export const validateProtocolStringConfiguration = async (configurationData : string, config : ExecConfig = {}) => {
   let objectResult;
 
   try {
@@ -30,7 +34,10 @@ export const validateProtocolStringConfiguration = async (configurationData : st
     })
   }
 
-  await new ValidateMetaProtocolClass(objectResult as BuiltMetaProtocolDefinition).execute();
+  await new ValidateMetaProtocolClass(
+    objectResult as BuiltMetaProtocolDefinition,
+    config.filePath
+  ).execute();
 
   console.log(success("File passed validation."));
 }

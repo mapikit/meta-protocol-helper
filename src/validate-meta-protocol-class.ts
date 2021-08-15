@@ -49,12 +49,14 @@ export class ValidateMetaProtocolClass {
     arg1 : unknown, arg2 : FunctionManager
   ) => T> {
     const entrypointPath = this.protocolDefinition.entrypoint;
-    const importedAsset = import(join(this.filePath, entrypointPath));
+    const path = join(this.filePath, entrypointPath);
+    console.log(path)
+    const importedAsset = import(path);
 
     const result = (await importedAsset)[this.protocolDefinition.className];
 
     if (result === undefined) {
-      throw Error(error(ValidationErrorCodes.V11P) + `: "${join(this.filePath, entrypointPath)}"`)
+      throw Error(error(ValidationErrorCodes.V11P) + `: "${this.protocolDefinition.className}" at "${path}"`)
     }
 
     return result;
