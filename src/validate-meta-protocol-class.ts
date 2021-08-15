@@ -50,7 +50,13 @@ export class ValidateMetaProtocolClass {
     const entrypointPath = this.protocolDefinition.entrypoint;
     const importedAsset = import(join(process.cwd(), entrypointPath));
 
-    return (await importedAsset)[this.protocolDefinition.className];
+    const result = (await importedAsset)[this.protocolDefinition.className];
+
+    if (result === undefined) {
+      throw Error(error(ValidationErrorCodes.V11P))
+    }
+
+    return result;
   }
 
   private validatePackageMethods <T, Y extends MetaProtocol<T>>(instance: Y) : void {
