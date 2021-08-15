@@ -1,23 +1,20 @@
-import { isMetaFunction } from "./src/is-meta-function";
 import { ValidationErrorCodes } from "./src/error-codes";
-import { MetaCustomTypesValidation } from "./src/custom-types-validation";
-import { validateStringConfiguration } from "./src/validate-string-configuration";
-import { MetaFunction, CustomType } from "./src/meta-function-type";
-import { AcceptedTypes, ObjectDefinition } from "./src/object-definition/object-definition-type";
-import { isObjectDefinition } from "./src/object-definition/is-object-definition";
+import { validateProtocolStringConfiguration } from "./src/validate-string-configuration";
+import { MetaProtocolDefinition, BuiltMetaProtocolDefinition } from "./src/meta-protocol-type";
+import { isMetaProtocol } from "./src/is-meta-protocol";
+import { ValidateMetaProtocolClass } from "./src/validate-meta-protocol-class";
+import { MetaProtocol } from "./src/meta-protocol";
 
 export {
-  AcceptedTypes,
-  MetaFunction,
-  CustomType,
-  ObjectDefinition,
+  MetaProtocolDefinition,
+  BuiltMetaProtocolDefinition,
 }
 
 export default {
-  validateStringConfiguration,
-  MetaCustomTypesValidation,
-  isMetaFunction,
+  validateProtocolStringConfiguration,
+  isMetaProtocol,
   ValidationErrorCodes,
-  isObjectDefinition
+  ValidateMetaProtocolClass,
+  MetaProtocol
 }
 

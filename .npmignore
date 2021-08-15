@@ -1,5 +1,6 @@
-meta-function.json
+meta-protocol.json
 node_modules
 tsconfig.json
 src/*
 index.ts
+test-data
