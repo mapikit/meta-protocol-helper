@@ -53,7 +53,7 @@ export class ValidateMetaProtocolClass {
     const result = (await importedAsset)[this.protocolDefinition.className];
 
     if (result === undefined) {
-      throw Error(error(ValidationErrorCodes.V11P))
+      throw Error(error(ValidationErrorCodes.V11P) + `: "${join(process.cwd(), entrypointPath)}"`)
     }
 
     return result;
