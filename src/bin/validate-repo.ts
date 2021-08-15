@@ -2,12 +2,12 @@
 
 import { findMetaFunctionFile } from "../find-function-declaration-file";
 import { processing } from "../chalk-formatting";
-import { validateStringConfiguration } from "../validate-string-configuration";
+import { validateProtocolStringConfiguration } from "../validate-string-configuration";
 
 const main = () : void => {
-  console.log(processing("Starting validation of the \"meta-function.json\" file...\n"))
+  console.log(processing("Starting validation of the \"meta-protocol.json\" file...\n"))
   findMetaFunctionFile()
-    .then(validateStringConfiguration)
+    .then(validateProtocolStringConfiguration)
     .catch((error) => {
       console.log("Could not pass file validation due to error below:");
       console.log(error.message);

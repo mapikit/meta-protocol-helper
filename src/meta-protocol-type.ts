@@ -1,18 +1,21 @@
-import { ObjectDefinition } from "meta-function-helper";
+import { BuiltMetaPackage, MetaPackage } from "meta-function-helper";
 
-export interface MetaProtocol {
-  functionName : string;
+export interface MetaProtocolDefinition {
+  protocolName : string;
   description : string;
   author ?: string;
   version : string; // Must be SemVer
-  inputParameters ?: ObjectDefinition;
-  outputData ?: ObjectDefinition;
   entrypoint : string;
-  mainFunction : string;
-  customTypes ?: CustomType[];
+  className : string;
+  packageDetails ?: MetaPackage
 }
 
-export interface CustomType {
-  name : string;
-  type : ObjectDefinition;
+export interface BuiltMetaProtocolDefinition {
+  protocolName : string;
+  description : string;
+  author ?: string;
+  version : string; // Must be SemVer
+  entrypoint : string;
+  className : string;
+  packageDetails ?: BuiltMetaPackage
 }

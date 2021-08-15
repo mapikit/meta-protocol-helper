@@ -11,13 +11,13 @@ const fsPromise = FS.promises;
  * or throws with an error
  */
 export const findMetaFunctionFile = async () : Promise<string> => {
-  const defaultFileName = "meta-function.json";
+  const defaultFileName = "meta-protocol.json";
   const filePath = Path.join(process.env.PWD, defaultFileName);
 
   const result = await fsPromise.readFile(filePath, "utf8")
     .catch((error) => {
       console.error(error);
-      throw Error(ValidationErrorCodes.V00);
+      throw Error(ValidationErrorCodes.V00P);
     });
   
   return result;

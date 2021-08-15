@@ -5,7 +5,7 @@ export interface FunctionManager {
 export abstract class MetaProtocol<ProtocolConfig> {
   public constructor (
     protected protocolConfiguration : ProtocolConfig,
-    protected functionManager : FunctionManager,
+    protected bopsManager : FunctionManager,
   ) {
     this.protocolConfiguration = Object.freeze(protocolConfiguration);
   }
@@ -13,4 +13,5 @@ export abstract class MetaProtocol<ProtocolConfig> {
   public abstract validateConfiguration () : void;
   public abstract start () : void;
   public abstract stop () : void;
+  public abstract getProtocolPublicMethods () : Record<string, Function>;
 }
