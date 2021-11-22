@@ -2,12 +2,13 @@
 import { ValidationErrorCodes } from "./error-codes";
 import { error, success } from "./chalk-formatting";
 import { isMetaProtocol } from "./is-meta-protocol";
-import { ValidateMetaProtocolClass } from "./validate-meta-protocol-class";
 import { BuiltMetaProtocolDefinition } from "./meta-protocol-type";
 import { buildAllFunctionDefinitions, isFunctionDefinition } from "@meta-system/meta-function-helper";
+import { ValidateProtocolClass } from "./validate-protocol-class";
 
 // eslint-disable-next-line max-lines-per-function
-export const validateProtocolConfiguration = async (configurationData : unknown, workingDir = "") : Promise<void> => {
+export const validateProtocolConfiguration = async (
+  configurationData : unknown, workingDir = "", isDbProtocol = false) : Promise<void> => {
   isMetaProtocol(configurationData);
 
   const builtProtocol : BuiltMetaProtocolDefinition = {
@@ -28,9 +29,10 @@ export const validateProtocolConfiguration = async (configurationData : unknown,
     });
   }
 
-  await new ValidateMetaProtocolClass(
+  await new ValidateProtocolClass(
     builtProtocol,
     workingDir,
+    isDbProtocol,
   ).execute();
 
   console.log(success("File passed validation."));

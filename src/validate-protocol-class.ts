@@ -10,10 +10,11 @@ const stubManager = {
   get: () => () : void  => {},
 };
 
-export class ValidateMetaProtocolClass {
+export class ValidateProtocolClass {
   public constructor (
     private readonly protocolDefinition : BuiltMetaProtocolDefinition,
     private readonly filePath : string = "",
+    private readonly isDbProtocol = false,
   ) {
     this.execute = this.execute.bind(this);
     this.validatePackageMethods = this.validatePackageMethods.bind(this);
@@ -30,15 +31,13 @@ export class ValidateMetaProtocolClass {
         throw Error(error(ValidationErrorCodes.V06P));
       }) as new (...args) => unknown;
 
+    const secondArg = this.isDbProtocol ? [] : stubManager;
+
     const instantiatedProtocol = new NewableProtocol(
-      stubConfig, stubManager,
+      stubConfig, secondArg,
     );
 
-    const requiredMethods = [
-      "start", "stop", "validateConfiguration", "getProtocolPublicMethods",
-    ];
-
-    for (const method of requiredMethods) {
+    for (const method of this.getRequiredMethods()) {
       if (instantiatedProtocol[method] === undefined) {
         throw Error(error(ValidationErrorCodes.V07P
           + ` - method "${method}" must be implemented`));
@@ -65,5 +64,27 @@ export class ValidateMetaProtocolClass {
           + " in the \"getProtocolPublicMethods\" result"));
       }
     });
+  }
+
+  // eslint-disable-next-line max-lines-per-function
+  private getRequiredMethods () : string[] {
+    const baseRequiredMethods = [ "validateConfiguration", "getProtocolPublicMethods" ];
+
+    if (this.isDbProtocol) {
+      return [
+        "initialize",
+        "shutdown",
+        "insert",
+        "deleteById",
+        "updateById",
+        "update",
+        "delete",
+        "findById",
+        "find",
+        ...baseRequiredMethods,
+      ];
+    }
+
+    return [ "start", "stop", ...baseRequiredMethods ];
   }
 };
