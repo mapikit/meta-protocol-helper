@@ -1,5 +1,5 @@
 import { ValidationErrorCodes } from "./src/error-codes";
-import { validateProtocolStringConfiguration } from "./src/validate-string-configuration";
+import { validateProtocolConfiguration } from "./src/validate-protocol-configuration";
 import { MetaProtocolDefinition, BuiltMetaProtocolDefinition } from "./src/meta-protocol-type";
 import { isMetaProtocol } from "./src/is-meta-protocol";
 import { ValidateMetaProtocolClass } from "./src/validate-meta-protocol-class";
@@ -11,7 +11,7 @@ export {
 }
 
 export default {
-  validateProtocolStringConfiguration,
+  validateProtocolStringConfiguration: validateProtocolConfiguration,
   isMetaProtocol,
   ValidationErrorCodes,
   ValidateMetaProtocolClass,

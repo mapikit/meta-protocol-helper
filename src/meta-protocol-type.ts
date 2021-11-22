@@ -1,4 +1,4 @@
-import { BuiltMetaPackage, MetaPackage } from "meta-function-helper";
+import { FunctionDefinition } from "@meta-system/meta-function-helper";
 
 export interface MetaProtocolDefinition {
   protocolName : string;
@@ -7,7 +7,7 @@ export interface MetaProtocolDefinition {
   version : string; // Must be SemVer
   entrypoint : string;
   className : string;
-  packageDetails ?: MetaPackage
+  functionDefinitions ?: Array<string | FunctionDefinition>;
 }
 
 export interface BuiltMetaProtocolDefinition {
@@ -17,5 +17,5 @@ export interface BuiltMetaProtocolDefinition {
   version : string; // Must be SemVer
   entrypoint : string;
   className : string;
-  packageDetails ?: BuiltMetaPackage
+  functionDefinitions ?: FunctionDefinition[];
 }

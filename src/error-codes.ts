@@ -13,5 +13,6 @@ export enum ValidationErrorCodes {
   V08P = "V08P - The protocol does not have all methods declared in the its configuration",
   V09P = "V09P - You must define an array of functions definitions when declaring a package",
   V10P = "V10P - GetPublicMethods function must return an object",
-  V11P = "V11P - The class does not exist on the given entrypoint"
+  V11P = "V11P - The class does not exist on the given entrypoint",
+  ValidatedProtocolNotObject = "The protocol definition must be an object",
 }

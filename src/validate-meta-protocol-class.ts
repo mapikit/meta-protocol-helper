@@ -1,82 +1,69 @@
-import { FunctionManager } from "meta-function-helper";
 import { error } from "./chalk-formatting";
 import { ValidationErrorCodes } from "./error-codes";
 import { MetaProtocol } from "./meta-protocol";
 import { BuiltMetaProtocolDefinition } from "./meta-protocol-type";
-import { join } from "path"
+import { getClassConstructor } from "@meta-system/meta-function-helper";
 
 const stubConfig = {};
 const stubManager = {
-  get: () => () => {},
-}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  get: () => () : void  => {},
+};
 
 export class ValidateMetaProtocolClass {
   public constructor (
     private readonly protocolDefinition : BuiltMetaProtocolDefinition,
-    private readonly filePath : string = process.cwd(),
+    private readonly filePath : string = "",
   ) {
     this.execute = this.execute.bind(this);
-    this.importClass = this.importClass.bind(this);
     this.validatePackageMethods = this.validatePackageMethods.bind(this);
   }
 
+  // eslint-disable-next-line max-lines-per-function
   public async execute () : Promise<void> {
-    const NewableProtocol = await this.importClass()
+    const NewableProtocol = await getClassConstructor(
+      this.filePath,
+      this.protocolDefinition.entrypoint,
+      this.protocolDefinition.className)
       .catch((err) => {
         console.error(err);
         throw Error(error(ValidationErrorCodes.V06P));
-      });
+      }) as new (...args) => unknown;
 
     const instantiatedProtocol = new NewableProtocol(
       stubConfig, stubManager,
     );
 
     const requiredMethods = [
-      "start", "stop", "validateConfiguration", "getProtocolPublicMethods"
-    ]
+      "start", "stop", "validateConfiguration", "getProtocolPublicMethods",
+    ];
 
     for (const method of requiredMethods) {
       if (instantiatedProtocol[method] === undefined) {
         throw Error(error(ValidationErrorCodes.V07P
-          + ` - method "${method}" must be implemented`))
+          + ` - method "${method}" must be implemented`));
       }
     }
 
     this.validatePackageMethods(instantiatedProtocol as MetaProtocol<unknown>);
   }
 
-  private async importClass<T>() : Promise<new (
-    arg1 : unknown, arg2 : FunctionManager
-  ) => T> {
-    const entrypointPath = this.protocolDefinition.entrypoint;
-    const path = join(this.filePath, entrypointPath);
-    const importedAsset = import(path);
-
-    const result = (await importedAsset)[this.protocolDefinition.className];
-
-    if (result === undefined) {
-      throw Error(error(ValidationErrorCodes.V11P) + `: "${this.protocolDefinition.className}" at "${path}"`)
-    }
-
-    return result;
-  }
-
-  private validatePackageMethods <T, Y extends MetaProtocol<T>>(instance: Y) : void {
+  private validatePackageMethods <T, Y extends MetaProtocol<T>> (instance : Y) : void {
     const publicMethods = instance.getProtocolPublicMethods();
 
     if (typeof publicMethods !== "object") {
-      throw Error(error(ValidationErrorCodes.V10P))
+      throw Error(error(ValidationErrorCodes.V10P));
     }
 
-    const packageDetails = this.protocolDefinition.packageDetails;
+    const packageDetails = this.protocolDefinition.functionDefinitions;
     if (packageDetails === undefined) { return; }
 
-    packageDetails.functionsDefinitions.forEach((functionDefinition) => {
+    packageDetails.forEach((functionDefinition) => {
       if (publicMethods[functionDefinition.functionName] === undefined) {
         throw Error(error(ValidationErrorCodes.V08P
-          + ` - function "${functionDefinition.functionName}" must be present in the "getProtocolPublicMethods" result`))
+          + ` - function "${functionDefinition.functionName}" must be present`
+          + " in the \"getProtocolPublicMethods\" result"));
       }
     });
   }
-  
-}
+};

@@ -3,7 +3,12 @@ import { error } from "./chalk-formatting";
 import { ValidationErrorCodes } from "./error-codes";
 import { MetaProtocolDefinition } from "./meta-protocol-type";
 
-export function isMetaProtocol (input : object) : asserts input is MetaProtocolDefinition {
+// eslint-disable-next-line max-lines-per-function
+export function isMetaProtocol (input : unknown) : asserts input is MetaProtocolDefinition {
+  if (typeof input !== "object") {
+    throw Error(error(ValidationErrorCodes.ValidatedProtocolNotObject));
+  }
+
   const protocolLikeInput = input as MetaProtocolDefinition;
 
   if (typeof protocolLikeInput.protocolName !== "string") {
