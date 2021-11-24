@@ -14,7 +14,8 @@
     "url": "git+https://github.com/mapikit/meta-protocol-helper.git"
   },
   "bin": {
-    "meta-protocol-check": "./dist/src/bin/validate-repo.js"
+    "meta-protocol-check": "./dist/src/bin/validate-protocol.js",
+    "db-protocol-check": "./dist/src/bin/validate-db-protocol.js"
   },
   "mocha": {
     "require": [

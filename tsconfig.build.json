@@ -7,7 +7,7 @@
     "dist/*"
   ],
   "include": [
-    "src/*",
-    "src/bin/index.ts"
+    "src/",
+    "./"
   ]
 }
