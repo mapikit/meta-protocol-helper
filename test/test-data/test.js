@@ -3,7 +3,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const imported = require("../../dist/index");
 
-class Test extends imported.default.MetaProtocol {
+class Test extends imported.MetaProtocol {
   constructor () {
     super();
   }

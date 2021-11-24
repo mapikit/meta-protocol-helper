@@ -3,24 +3,32 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const imported = require("../../../../dist/index");
 
-class Test extends imported.MetaProtocol {
+class TestDBProtocol extends imported.DBProtocol {
   constructor () {
     super();
   }
 
-  start () {}
+  initialize () {}
 
-  stop () {}
+  shutdown () {}
 
   validateConfiguration () {}
 
-  // getProtocolPublicMethods () {
-  //   return {
-  //     aNamedFunction: () => {},
-  //   };
-  // }
+  getProtocolPublicMethods () {
+    return {
+      aNamedFunction: () => {},
+    };
+  }
+
+  insert () {}
+  deleteById () {}
+  updateById () {}
+  update () {}
+  delete () {}
+  findById () {}
+  find () {}
 }
 
 module.exports = {
-  Test,
+  TestDBProtocol,
 };

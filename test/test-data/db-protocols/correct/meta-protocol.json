@@ -1,0 +1,15 @@
+{
+  "protocolName": "test-db-protocol",
+  "description": "a test DB protocol",
+  "version": "1.0.0",
+  "entrypoint": "./test.js",
+  "className": "TestDBProtocol",
+  "functionDefinitions": [
+    {
+      "functionName": "aNamedFunction",
+      "output": {},
+      "input": {},
+      "description": "some description"
+    }
+  ]
+}

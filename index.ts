@@ -4,6 +4,7 @@ import { MetaProtocolDefinition, BuiltMetaProtocolDefinition } from "./src/meta-
 import { isMetaProtocol } from "./src/is-meta-protocol";
 import { ValidateProtocolClass } from "./src/validate-protocol-class";
 import { MetaProtocol } from "./src/meta-protocol";
+import { DBProtocol } from "./src/db-protocol";
 
 export {
   MetaProtocolDefinition,
@@ -13,4 +14,5 @@ export {
   ValidationErrorCodes,
   ValidateProtocolClass,
   MetaProtocol,
+  DBProtocol,
 };
