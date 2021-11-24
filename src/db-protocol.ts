@@ -18,6 +18,11 @@ interface FindByIdResponse extends BaseDBProtocolResponse {
 
 interface FindResponse extends BaseDBProtocolResponse {
   data : unknown[];
+  pages ?: number;
+}
+
+interface CountResponse extends BaseDBProtocolResponse {
+  count : number;
 }
 
 export abstract class DBProtocol<ProtocolConfig> {
@@ -52,4 +57,5 @@ export abstract class DBProtocol<ProtocolConfig> {
   public abstract delete (query : QueryType) : Promise<QueryOperationResponse>;
   public abstract findById (id : string) : Promise<FindByIdResponse>;
   public abstract find (query : QueryType, limit ?: number, offset ?: number) : Promise<FindResponse>;
+  public abstract count (query : QueryType) : Promise<CountResponse>;
 }

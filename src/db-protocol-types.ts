@@ -1,26 +1,71 @@
+/** This is the type used for the base query of
+ * objects, supporting query operations like $and, $or.
+ */
 export type QueryType = {
+  // The key must be a property of the schema
+  [K : string] : ComplexQuery;
+}
+
+/** This type is used for when a query operator was
+ * already used in a parent node on the tree, and no children must
+ * be another query operator.
+ */
+type InnerObjectQueryType = {
   [K : string] : PropertyQuery;
 }
 
-export type PropertyQuery = TypeStringQuery | TypeNumberQuery
-| TypeDateQuery | TypeBooleanQuery | TypeStringArrayQuery | QueryType
+// $Or and $Either are the same
+type EitherOperation = {
+  "$either" : PropertyQuery[];
+}
+
+type OrOperation = {
+  "$or" : PropertyQuery[];
+}
+
+type AndOperation = {
+  "$and" : PropertyQuery[];
+}
+
+type QueryOperation = EitherOperation | OrOperation | AndOperation;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const testQuery : QueryType = {
+  "name": { "equal_to": "John" },
+  "age": { "$and": [{ "lower_or_equal_to": 13, "greater_or_equal_to": 40 }] },
+  "hobbies": { "$either": [{ "equal_to": "bowling" }, { "equal_to": "skating" }, { "contains": "ice" }] },
+};
+
+// "grandfather.family.name" must contain "shazam" AND is not "shazambalam"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const testQuery2 : QueryType = {
+  "grandfather": { "family": { "surname": { "$and": [
+    { "contains": ["shazam"] },
+    { "not_one_of": ["shazambalam"] },
+  ] } } },
+};
+
+type ComplexQuery = PropertyQuery | QueryOperation | QueryType;
+
+type PropertyQuery = TypeStringQuery | TypeNumberQuery
+| TypeDateQuery | TypeBooleanQuery | TypeStringArrayQuery | InnerObjectQueryType
 | TypeNumberArrayQuery | TypeBooleanArrayQuery | TypeDateArrayQuery
 | TypeObjectArrayQuery;
 
-export enum QueryTypes {
-  string,
-  number,
-  date,
-  boolean,
-  stringArray,
-  numberArray,
-  booleanArray,
-  dateArray,
-  object,
-  objectArray,
-}
+// enum QueryTypes {
+//   string,
+//   number,
+//   date,
+//   boolean,
+//   stringArray,
+//   numberArray,
+//   booleanArray,
+//   dateArray,
+//   object,
+//   objectArray,
+// }
 
-export interface TypeStringQuery {
+interface TypeStringQuery {
   equal_to ?: string;
   not_equal_to ?: string;
   one_of ?: string[];
@@ -29,7 +74,7 @@ export interface TypeStringQuery {
   regexp ?: string;
 }
 
-export interface TypeNumberQuery {
+interface TypeNumberQuery {
   equal_to ?: number;
   not_equal_to ?: number;
   greater_than ?: number;
@@ -41,7 +86,7 @@ export interface TypeNumberQuery {
   exists ?: boolean;
 }
 
-export interface TypeDateQuery {
+interface TypeDateQuery {
   equal_to ?: Date;
   not_equal_to ?: Date;
   greater_than ?: Date;
@@ -53,7 +98,7 @@ export interface TypeDateQuery {
   exists ?: boolean;
 }
 
-export interface TypeBooleanQuery {
+interface TypeBooleanQuery {
   equal_to ?: boolean;
   not_equal_to ?: boolean;
   exists ?: boolean;
@@ -71,24 +116,24 @@ interface TypeArrayQuery<T> {
   exists ?: boolean;
 }
 
-export interface TypeStringArrayQuery extends TypeArrayQuery<string> {
+interface TypeStringArrayQuery extends TypeArrayQuery<string> {
   contains_regexp ?: string;
 }
 
-export interface TypeNumberArrayQuery extends TypeArrayQuery<number> {
+interface TypeNumberArrayQuery extends TypeArrayQuery<number> {
   contains_higher_than ?: number;
   contains_higher_or_equal_to ?: number;
   contains_lower_than ?: number;
   contains_lower_or_equal_to ?: number;
 }
 
-export type TypeBooleanArrayQuery = TypeArrayQuery<boolean>;
+type TypeBooleanArrayQuery = TypeArrayQuery<boolean>;
 
-export interface TypeDateArrayQuery extends TypeArrayQuery<Date> {
+interface TypeDateArrayQuery extends TypeArrayQuery<Date> {
   contains_higher_than ?: Date;
   contains_higher_or_equal_to ?: Date;
   contains_lower_than ?: Date;
   contains_lower_or_equal_to ?: Date;
 }
 
-export type TypeObjectArrayQuery = TypeArrayQuery<object>;
+type TypeObjectArrayQuery = TypeArrayQuery<object>;

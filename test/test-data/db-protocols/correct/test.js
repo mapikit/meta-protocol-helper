@@ -27,6 +27,7 @@ class TestDBProtocol extends imported.DBProtocol {
   delete () {}
   findById () {}
   find () {}
+  count () {}
 }
 
 module.exports = {

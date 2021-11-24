@@ -31,6 +31,10 @@ export class ValidateProtocolClass {
         throw Error(error(ValidationErrorCodes.V06P));
       }) as new (...args) => unknown;
 
+    if (NewableProtocol === undefined) {
+      throw Error(error(ValidationErrorCodes.V06P));
+    }
+
     const secondArg = this.isDbProtocol ? [] : stubManager;
 
     const instantiatedProtocol = new NewableProtocol(
@@ -81,6 +85,7 @@ export class ValidateProtocolClass {
         "delete",
         "findById",
         "find",
+        "count",
         ...baseRequiredMethods,
       ];
     }
