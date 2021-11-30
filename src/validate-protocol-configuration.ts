@@ -2,7 +2,7 @@
 import { ValidationErrorCodes } from "./error-codes";
 import { error, success } from "./chalk-formatting";
 import { isMetaProtocol } from "./is-meta-protocol";
-import { BuiltMetaProtocolDefinition } from "./meta-protocol-type";
+import { BuiltMetaProtocolDefinition } from "./type/meta-protocol-type";
 import { buildAllFunctionDefinitions, isFunctionDefinition } from "@meta-system/meta-function-helper";
 import { ValidateProtocolClass } from "./validate-protocol-class";
 

@@ -1,5 +1,6 @@
 import { ObjectDefinition } from "@meta-system/object-definition";
-import { QueryType } from "./db-protocol-types";
+import { getQueryPerProperty } from "./db-protocols-tools/get-query-per-property";
+import { QueryType } from "./type/db-protocol-types";
 
 export type SchemaList = Array<{ name : string; format : ObjectDefinition }>
 
@@ -32,6 +33,9 @@ export abstract class DBProtocol<ProtocolConfig> {
   ) {
     this.protocolConfiguration = Object.freeze(protocolConfiguration);
   }
+
+  // Tool Methods
+  protected getQueryPerProperty = getQueryPerProperty;
 
   // Utils methods
   public abstract validateConfiguration () : void;

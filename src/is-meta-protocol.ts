@@ -1,7 +1,7 @@
 import { valid } from "semver";
 import { error } from "./chalk-formatting";
 import { ValidationErrorCodes } from "./error-codes";
-import { MetaProtocolDefinition } from "./meta-protocol-type";
+import { MetaProtocolDefinition } from "./type/meta-protocol-type";
 
 // eslint-disable-next-line max-lines-per-function
 export function isMetaProtocol (input : unknown) : asserts input is MetaProtocolDefinition {

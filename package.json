@@ -35,10 +35,12 @@
     "@meta-system/meta-function-helper": "^0.3.1",
     "@meta-system/object-definition": "^1.0.6",
     "chalk": "^4.1.0",
+    "deep-diff": "^1.0.2",
     "semver": "^7.3.4"
   },
   "devDependencies": {
     "@types/chai": "^4.2.22",
+    "@types/deep-diff": "^1.0.1",
     "@types/mocha": "^9.0.0",
     "@types/node": "^14.14.25",
     "@types/semver": "^7.3.4",

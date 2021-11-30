@@ -1,7 +1,7 @@
 import { error } from "./chalk-formatting";
 import { ValidationErrorCodes } from "./error-codes";
 import { MetaProtocol } from "./meta-protocol";
-import { BuiltMetaProtocolDefinition } from "./meta-protocol-type";
+import { BuiltMetaProtocolDefinition } from "./type/meta-protocol-type";
 import { getClassConstructor } from "@meta-system/meta-function-helper";
 
 const stubConfig = {};

@@ -27,12 +27,16 @@ type AndOperation = {
   "$and" : PropertyQuery[];
 }
 
-type QueryOperation = EitherOperation | OrOperation | AndOperation;
+export type QueryOperation = EitherOperation | OrOperation | AndOperation
+| TypeStringQuery | TypeNumberQuery
+| TypeDateQuery | TypeBooleanQuery | TypeStringArrayQuery
+| TypeNumberArrayQuery | TypeBooleanArrayQuery | TypeDateArrayQuery
+| TypeObjectArrayQuery;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const testQuery : QueryType = {
   "name": { "equal_to": "John" },
-  "age": { "$and": [{ "lower_or_equal_to": 13, "greater_or_equal_to": 40 }] },
+  "age": { "$and": [{ "less_or_equal_to": 13, "greater_or_equal_to": 40 }] },
   "hobbies": { "$either": [{ "equal_to": "bowling" }, { "equal_to": "skating" }, { "contains": "ice" }] },
 };
 
@@ -79,8 +83,8 @@ interface TypeNumberQuery {
   not_equal_to ?: number;
   greater_than ?: number;
   greater_or_equal_to ?: number;
-  lower_than ?: number;
-  lower_or_equal_to ?: number;
+  less_than ?: number;
+  less_or_equal_to ?: number;
   one_of ?: number[];
   not_one_of ?: number[];
   exists ?: boolean;
@@ -91,8 +95,8 @@ interface TypeDateQuery {
   not_equal_to ?: Date;
   greater_than ?: Date;
   greater_or_equal_to ?: Date;
-  lower_than ?: Date;
-  lower_or_equal_to ?: Date;
+  less_than ?: Date;
+  less_or_equal_to ?: Date;
   one_of ?: Date[];
   not_one_of ?: Date[];
   exists ?: boolean;
@@ -109,7 +113,9 @@ interface TypeArrayQuery<T> {
   identical_to ?: T[];
   contains_all ?: T[];
   contains ?: T;
+  in ?: T; // The same as `contains`
   not_contains ?: T;
+  not_in ?: T; // The same as `not_contains`
   contains_one_of ?: T[];
   contains_none_of ?: T[];
   size ?: number;
@@ -121,19 +127,19 @@ interface TypeStringArrayQuery extends TypeArrayQuery<string> {
 }
 
 interface TypeNumberArrayQuery extends TypeArrayQuery<number> {
-  contains_higher_than ?: number;
-  contains_higher_or_equal_to ?: number;
-  contains_lower_than ?: number;
-  contains_lower_or_equal_to ?: number;
+  contains_greater_than ?: number;
+  contains_greater_or_equal_to ?: number;
+  contains_less_than ?: number;
+  contains_less_or_equal_to ?: number;
 }
 
 type TypeBooleanArrayQuery = TypeArrayQuery<boolean>;
 
 interface TypeDateArrayQuery extends TypeArrayQuery<Date> {
-  contains_higher_than ?: Date;
-  contains_higher_or_equal_to ?: Date;
-  contains_lower_than ?: Date;
-  contains_lower_or_equal_to ?: Date;
+  contains_greater_than ?: Date;
+  contains_greater_or_equal_to ?: Date;
+  contains_less_than ?: Date;
+  contains_less_or_equal_to ?: Date;
 }
 
 type TypeObjectArrayQuery = TypeArrayQuery<object>;
