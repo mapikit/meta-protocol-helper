@@ -1,8 +1,9 @@
-import { ObjectDefinition } from "@meta-system/object-definition";
+import { checkSchemaDiff } from "./db-protocols-tools/get-schema-diff";
+import { SchemaType } from "./type/schema-types";
 import { getQueryPerProperty } from "./db-protocols-tools/get-query-per-property";
 import { QueryType } from "./type/db-protocol-types";
 
-export type SchemaList = Array<{ name : string; format : ObjectDefinition }>
+export type SchemaList = Array<SchemaType>
 
 interface BaseDBProtocolResponse {
   success : boolean;
@@ -36,6 +37,16 @@ export abstract class DBProtocol<ProtocolConfig> {
 
   // Tool Methods
   protected getQueryPerProperty = getQueryPerProperty;
+  protected checkSchemaDiff = checkSchemaDiff;
+
+  /**
+   * This method is used to check if the protocol supports the way the schema is structured.
+   * For instance, you may want to not support deep schemas in a SQL DB.
+   *
+   * If there is a schema you don't want to support, check for their presence and
+   * throw with a meaningful error that should point the user to fix their schemas.
+   */
+  public abstract verifySchemaSupport () : void;
 
   // Utils methods
   public abstract validateConfiguration () : void;

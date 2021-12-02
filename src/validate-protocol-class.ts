@@ -76,6 +76,7 @@ export class ValidateProtocolClass {
 
     if (this.isDbProtocol) {
       return [
+        "verifySchemaSupport",
         "initialize",
         "shutdown",
         "insert",

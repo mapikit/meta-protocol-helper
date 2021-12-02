@@ -1,6 +1,9 @@
 # Releases
 ## 0.2 - DB Protocols
-Introducing a helper for making DB protocols too.
+Introducing a helper for making DB protocols.
+- New class exported: "DBProtocol"
+- New command for checking DB protocols: `db-protocol-check`
+
 Also, a lot of repo improvements were made, including:
 - added linting
 - added tests

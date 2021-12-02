@@ -14,6 +14,8 @@ class TestDBProtocol extends imported.DBProtocol {
 
   validateConfiguration () {}
 
+  verifySchemaSupport () {}
+
   getProtocolPublicMethods () {
     return {
       aNamedFunction: () => {},

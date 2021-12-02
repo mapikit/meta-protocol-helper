@@ -23,12 +23,12 @@ export const checkSchemaDiff =
 };
 
 interface SchemaChange {
-  action : "changed" | "added" | "removed" | "UNKNOWN_CHANGE";
+  action : "changed" | "added" | "removed" | "type_changed" | "UNKNOWN_CHANGE";
   path : string;
   newState : ObjectDefinition[""] | string | null;
 }
 
-interface CompleteSchemaDiff {
+export interface CompleteSchemaDiff {
   identifier : string,
   changes : SchemaChange[]
 }
@@ -79,16 +79,12 @@ const processDiff = (identifier : string, rawSchemaDiff : Diff<SchemaType>[]) : 
       (rawDiff.rhs as unknown as ObjectDefinition[""]).type === undefined
       && diffPath?.endsWith(".type");
 
-    const path = diffPathIsTypeDiff
-      ? diffPath.slice(0, diffPath.lastIndexOf(".type"))
-      : diffPath;
-
-    const newState = diffPathIsTypeDiff
-      ? { "type": rawDiff.rhs as unknown as string }
-      : rawDiff.rhs as unknown as ObjectDefinition[""];
+    const path = diffPath;
+    const newState = rawDiff.rhs as unknown as ObjectDefinition[""];
+    const action = diffPathIsTypeDiff ? "type_changed" : kind;
 
     result.changes.push({
-      action: kind,
+      action,
       path: path ?? "FULL_SCHEMA",
       newState,
     });
