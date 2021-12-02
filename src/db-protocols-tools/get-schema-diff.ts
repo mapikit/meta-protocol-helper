@@ -5,10 +5,18 @@ import { SchemaType } from "../type/schema-types";
 export const checkSchemaDiff =
 (currentSchemas : Array<SchemaType>, newVersion : Array<SchemaType>) : Record<string, CompleteSchemaDiff> => {
   const diffs : Record<string, CompleteSchemaDiff> = {};
+  const newSchemas = newVersion.filter((schemaTypes) => {
+    return currentSchemas.find((schema) => schemaTypes.identifier === schema.identifier) === undefined;
+  });
+
   currentSchemas.forEach(schema => {
     const schemaId = schema.identifier;
     const newSchemaVersion = newVersion.find(currentSchema => currentSchema.identifier === schemaId);
     diffs[schema.identifier] = processDiff(schemaId, diff(schema, newSchemaVersion));
+  });
+
+  newSchemas.forEach((schema) => {
+    diffs[schema.identifier] = processDiff(schema.identifier, diff(undefined, schema));
   });
 
   return diffs;
@@ -66,10 +74,10 @@ const processDiff = (identifier : string, rawSchemaDiff : Diff<SchemaType>[]) : 
       continue;
     }
 
-    const diffPath = rawDiff.path?.join(".");
+    const diffPath : string | undefined = rawDiff.path?.join(".");
     const diffPathIsTypeDiff =
       (rawDiff.rhs as unknown as ObjectDefinition[""]).type === undefined
-      && diffPath.endsWith(".type");
+      && diffPath?.endsWith(".type");
 
     const path = diffPathIsTypeDiff
       ? diffPath.slice(0, diffPath.lastIndexOf(".type"))
@@ -81,7 +89,7 @@ const processDiff = (identifier : string, rawSchemaDiff : Diff<SchemaType>[]) : 
 
     result.changes.push({
       action: kind,
-      path,
+      path: path ?? "FULL_SCHEMA",
       newState,
     });
   }
