@@ -33,22 +33,6 @@ export type QueryOperation = EitherOperation | OrOperation | AndOperation
 | TypeNumberArrayQuery | TypeBooleanArrayQuery | TypeDateArrayQuery
 | TypeObjectArrayQuery;
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const testQuery : QueryType = {
-  "name": { "equal_to": "John" },
-  "age": { "$and": [{ "less_or_equal_to": 13, "greater_or_equal_to": 40 }] },
-  "hobbies": { "$either": [{ "equal_to": "bowling" }, { "equal_to": "skating" }, { "contains": "ice" }] },
-};
-
-// "grandfather.family.name" must contain "shazam" AND is not "shazambalam"
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const testQuery2 : QueryType = {
-  "grandfather": { "family": { "surname": { "$and": [
-    { "contains": ["shazam"] },
-    { "not_one_of": ["shazambalam"] },
-  ] } } },
-};
-
 type ComplexQuery = PropertyQuery | QueryOperation | QueryType;
 
 type PropertyQuery = TypeStringQuery | TypeNumberQuery

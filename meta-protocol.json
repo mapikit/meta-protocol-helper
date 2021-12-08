@@ -1,7 +1,0 @@
-{
-  "protocolName": "memory-db-protocol",
-  "description": "A DB protocol to use with schemas in Meta-System",
-  "version": "0.1.0",
-  "entrypoint": "mem-db.js",
-  "className": "MemDb"
-}
