@@ -1,20 +1,18 @@
 import { ValidationErrorCodes } from "./src/error-codes";
-import { validateProtocolStringConfiguration } from "./src/validate-string-configuration";
-import { MetaProtocolDefinition, BuiltMetaProtocolDefinition } from "./src/meta-protocol-type";
+import { validateProtocolConfiguration } from "./src/validate-protocol-configuration";
+import { MetaProtocolDefinition, BuiltMetaProtocolDefinition } from "./src/type/meta-protocol-type";
 import { isMetaProtocol } from "./src/is-meta-protocol";
-import { ValidateMetaProtocolClass } from "./src/validate-meta-protocol-class";
+import { ValidateProtocolClass } from "./src/validate-protocol-class";
 import { MetaProtocol } from "./src/meta-protocol";
+import { DBProtocol } from "./src/db-protocol";
 
 export {
   MetaProtocolDefinition,
   BuiltMetaProtocolDefinition,
-}
-
-export default {
-  validateProtocolStringConfiguration,
+  validateProtocolConfiguration,
   isMetaProtocol,
   ValidationErrorCodes,
-  ValidateMetaProtocolClass,
-  MetaProtocol
-}
-
+  ValidateProtocolClass,
+  MetaProtocol,
+  DBProtocol,
+};

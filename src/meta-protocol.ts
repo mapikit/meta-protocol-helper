@@ -1,4 +1,4 @@
-import { FunctionManager } from "meta-function-helper";
+import { FunctionManager } from "@meta-system/meta-function-helper";
 
 export abstract class MetaProtocol<ProtocolConfig> {
   public constructor (

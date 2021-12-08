@@ -1,4 +1,17 @@
 # Releases
+## 0.2 - DB Protocols
+Introducing a helper for making DB protocols.
+- New class exported: "DBProtocol"
+- New command for checking DB protocols: `db-protocol-check`
+
+Also, a lot of repo improvements were made, including:
+- added linting
+- added tests
+- refactored
+- now scoped to @meta-system
+- now using object-definition package
+- now using new meta-function-helper package
+
 ## 0.1.3 - Localized import
 You now have the option to specify where the location of the file search will be when using this helper programatically.
 
