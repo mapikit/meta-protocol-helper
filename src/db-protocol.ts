@@ -5,25 +5,25 @@ import { QueryType } from "./type/db-protocol-types";
 
 export type SchemaList = Array<SchemaType>
 
-interface BaseDBProtocolResponse {
+export interface BaseDBProtocolResponse {
   success : boolean;
 }
 
-interface QueryOperationResponse extends BaseDBProtocolResponse {
+export interface QueryOperationResponse extends BaseDBProtocolResponse {
   affectedEntities : number;
 }
 
-interface FindByIdResponse extends BaseDBProtocolResponse {
+export interface FindByIdResponse extends BaseDBProtocolResponse {
   data : unknown;
 }
 
 
-interface FindResponse extends BaseDBProtocolResponse {
+export interface FindResponse extends BaseDBProtocolResponse {
   data : unknown[];
   pages ?: number;
 }
 
-interface CountResponse extends BaseDBProtocolResponse {
+export interface CountResponse extends BaseDBProtocolResponse {
   count : number;
 }
 

@@ -1,4 +1,7 @@
 # Releases
+## 0.2.1 - Small export fixes
+Added some exports on the index file.
+
 ## 0.2 - DB Protocols
 Introducing a helper for making DB protocols.
 - New class exported: "DBProtocol"
