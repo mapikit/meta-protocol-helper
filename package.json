@@ -1,6 +1,6 @@
 {
   "name": "@meta-system/meta-protocol-helper",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A helper to validate your protocol configurations while developing a protocol for Meta-System",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

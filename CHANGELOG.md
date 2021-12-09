@@ -1,4 +1,7 @@
 # Releases
+## 0.2.2 - Change interface for the db methods of db Protocols
+Now all the methods also receive the id of the schema they're making the request to.
+
 ## 0.2.1 - Small export fixes
 Added some exports on the index file.
 
