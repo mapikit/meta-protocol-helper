@@ -1,4 +1,6 @@
 # Releases
+## 0.2.6 - Update DB protocols Inteface
+Grouped optional arguments together in a "parameters" object
 ## 0.2.5 - Fix Query per property tool
 The tool was failing to get multi-rule queries, which is now working normally.
 ## 0.2.4 - Export support Query Types

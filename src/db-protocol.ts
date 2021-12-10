@@ -65,14 +65,22 @@ export abstract class DBProtocol<ProtocolConfig> {
   public abstract getProtocolPublicMethods () : Record<string, Function>;
 
   // Actual DB methods
-  public abstract insert (schemaId : string, data : unknown) : Promise<BaseDBProtocolResponse>;
-  public abstract deleteById (schemaId : string, id : string) : Promise<BaseDBProtocolResponse>;
-  public abstract updateById (schemaId : string, data : unknown, id : string) : Promise<BaseDBProtocolResponse>;
-  public abstract update (schemaId : string, data : unknown, query : QueryType) : Promise<QueryOperationResponse>;
-  public abstract delete (schemaId : string, query : QueryType) : Promise<QueryOperationResponse>;
-  public abstract findById (schemaId : string, id : string) : Promise<FindByIdResponse>;
-  public abstract find (schemaId : string, query : QueryType, limit ?: number, offset ?: number)
+  public abstract insert (schemaId : string, parameters : { data : unknown }) : Promise<BaseDBProtocolResponse>;
+
+  public abstract deleteById (schemaId : string, parameters : { id : string }) : Promise<BaseDBProtocolResponse>;
+
+  public abstract updateById (schemaId : string, parameters : { data : unknown, id : string })
+  : Promise<BaseDBProtocolResponse>;
+
+  public abstract update (schemaId : string, parameters : { data : unknown, query : QueryType })
+  : Promise<QueryOperationResponse>;
+
+  public abstract delete (schemaId : string, parameters : { query : QueryType }) : Promise<QueryOperationResponse>;
+
+  public abstract findById (schemaId : string, parameters : { id : string }) : Promise<FindByIdResponse>;
+
+  public abstract find (schemaId : string, parameters : { query : QueryType, limit ?: number, offset ?: number })
   : Promise<FindResponse>;
 
-  public abstract count (qschemaId : string, uery : QueryType) : Promise<CountResponse>;
+  public abstract count (qschemaId : string, parameters : { query : QueryType }) : Promise<CountResponse>;
 }
