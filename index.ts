@@ -11,7 +11,7 @@ import {
   FindByIdResponse,
   FindResponse,
   QueryOperationResponse } from "./src/db-protocol";
-import { QueryType } from "./src/type/db-protocol-types";
+import { ComplexQuery, QueryType, QueryTypesEnum } from "./src/type/db-protocol-types";
 
 export {
   MetaProtocolDefinition,
@@ -28,4 +28,6 @@ export {
   FindResponse,
   CountResponse,
   QueryType,
+  QueryTypesEnum,
+  ComplexQuery,
 };

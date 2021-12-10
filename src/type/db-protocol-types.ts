@@ -33,25 +33,25 @@ export type QueryOperation = EitherOperation | OrOperation | AndOperation
 | TypeNumberArrayQuery | TypeBooleanArrayQuery | TypeDateArrayQuery
 | TypeObjectArrayQuery;
 
-type ComplexQuery = PropertyQuery | QueryOperation | QueryType;
+export type ComplexQuery = PropertyQuery | QueryOperation | QueryType;
 
 type PropertyQuery = TypeStringQuery | TypeNumberQuery
 | TypeDateQuery | TypeBooleanQuery | TypeStringArrayQuery | InnerObjectQueryType
 | TypeNumberArrayQuery | TypeBooleanArrayQuery | TypeDateArrayQuery
 | TypeObjectArrayQuery;
 
-// enum QueryTypes {
-//   string,
-//   number,
-//   date,
-//   boolean,
-//   stringArray,
-//   numberArray,
-//   booleanArray,
-//   dateArray,
-//   object,
-//   objectArray,
-// }
+export enum QueryTypesEnum {
+  string,
+  number,
+  date,
+  boolean,
+  stringArray,
+  numberArray,
+  booleanArray,
+  dateArray,
+  object,
+  objectArray,
+}
 
 interface TypeStringQuery {
   equal_to ?: string;

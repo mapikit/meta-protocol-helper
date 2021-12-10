@@ -1,4 +1,6 @@
 # Releases
+## 0.2.4 - Export support Query Types
+Exports some supporting types to aid development of a query builder in DB Protocols.
 ## 0.2.3 - Schema Diff bugfix
 Fixed a bug when the diff check would fail if there was no difference between schemas.
 ## 0.2.2 - Change interface for the db methods of db Protocols
