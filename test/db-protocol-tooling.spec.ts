@@ -168,5 +168,22 @@ describe("DbProtocols Tooling", () => {
       expect(result["1234"].changes[1].newState).to.be.deep.equal({ anotherProp: { type: "string" } });
       expect(result["1234"].changes[1].path).to.be.equal("format.property3.subtype");
     });
+
+    it ("There's no difference between schemas", () => {
+      const originalSchema : SchemaType = {
+        name: "testSchema",
+        format: {
+          property1: { "type": "string" },
+          property2: { "type": "number" },
+          property3: { "type": "boolean" },
+        },
+        dbProtocol: "",
+        identifier: "1234",
+      };
+
+      const result = checkSchemaDiff([originalSchema], [originalSchema]);
+
+      expect(result["1234"].changes.length).to.be.equal(0);
+    });
   });
 });

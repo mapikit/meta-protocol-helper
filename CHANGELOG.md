@@ -1,4 +1,6 @@
 # Releases
+## 0.2.3 - Schema Diff bugfix
+Fixed a bug when the diff check would fail if there was no difference between schemas.
 ## 0.2.2 - Change interface for the db methods of db Protocols
 Now all the methods also receive the id of the schema they're making the request to.
 

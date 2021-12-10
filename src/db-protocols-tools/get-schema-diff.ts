@@ -34,7 +34,7 @@ export interface CompleteSchemaDiff {
 }
 
 // eslint-disable-next-line max-lines-per-function
-const processDiff = (identifier : string, rawSchemaDiff : Diff<SchemaType>[]) : CompleteSchemaDiff => {
+const processDiff = (identifier : string, rawSchemaDiff : Diff<SchemaType>[] = []) : CompleteSchemaDiff => {
   const result : CompleteSchemaDiff = {
     identifier,
     changes: [],
