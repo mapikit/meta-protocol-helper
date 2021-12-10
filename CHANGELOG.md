@@ -1,4 +1,6 @@
 # Releases
+## 0.2.5 - Fix Query per property tool
+The tool was failing to get multi-rule queries, which is now working normally.
 ## 0.2.4 - Export support Query Types
 Exports some supporting types to aid development of a query builder in DB Protocols.
 ## 0.2.3 - Schema Diff bugfix

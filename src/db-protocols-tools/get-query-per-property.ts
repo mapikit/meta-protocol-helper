@@ -18,7 +18,8 @@ export const getQueryPerProperty = (query : QueryType) : QueryPerPath => {
 
     const value = {};
     value[operation] = property;
-    result[pathWithoutOperation] = value;
+    if (result[pathWithoutOperation] === undefined) result[pathWithoutOperation] = {};
+    Object.assign(result[pathWithoutOperation], value);
   }
 
   return result;
@@ -27,21 +28,20 @@ export const getQueryPerProperty = (query : QueryType) : QueryPerPath => {
 // eslint-disable-next-line max-lines-per-function
 const getQueryPaths = (object : Record<string, unknown>) : string[] => {
   const result = [];
-  let currentIndex = 0;
-
-  for (const key in object) {
-    result.push(key);
-    currentIndex = result.length -1;
+  Object.keys(object).forEach((key) => {
     const value = object[key];
     if (typeof value === "object" && !Array.isArray(value)) {
       isRecord(value);
       const innerObj = getQueryPaths(value);
-      innerObj.forEach((innerPath, index) => {
-        const basePath = result[currentIndex];
-        result[currentIndex + index] = `${basePath}.${innerPath}`;
+      innerObj.forEach((innerPath) => {
+        result.push(`${key}.${innerPath}`);
       });
+
+      return;
     }
-  }
+
+    result.push(key);
+  });
 
   return result;
 };

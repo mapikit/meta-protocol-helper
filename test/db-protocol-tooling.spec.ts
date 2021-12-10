@@ -31,6 +31,20 @@ describe("DbProtocols Tooling", () => {
 
       expect(result).to.be.deep.equal(expectation);
     });
+
+    it("Extracts multi-rule paths successfully", () => {
+      const query = {
+        dollarBillsInVirtualWallet: {
+          contains_greater_or_equal_to: 20,
+          not_contains: 100,
+        },
+      };
+
+      const result = getQueryPerProperty(query);
+      const expectation = { ...query };
+
+      expect(result).to.be.deep.equal(expectation);
+    });
   });
 
   describe("Check Schema Diff", () => {
