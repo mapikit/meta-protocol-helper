@@ -1,6 +1,6 @@
 {
   "name": "@meta-system/meta-protocol-helper",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "A helper to validate your protocol configurations while developing a protocol for Meta-System",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/mapikit/meta-protocol-helper.git"
   },
   "bin": {
-    "meta-protocol-check": "./dist/src/bin/validate-protocol.js",
+    "meta-protocol-check": "./dist/src/bin/validate-meta-protocol.js",
     "db-protocol-check": "./dist/src/bin/validate-db-protocol.js"
   },
   "mocha": {

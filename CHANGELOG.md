@@ -1,4 +1,6 @@
 # Releases
+## 0.2.7 - Fixes execution of meta-protocol-check
+There was a typo on the `package.json` file, preventing it to be executed properly.
 ## 0.2.6 - Update DB protocols Inteface
 Grouped optional arguments together in a "parameters" object
 ## 0.2.5 - Fix Query per property tool
