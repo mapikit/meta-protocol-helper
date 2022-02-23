@@ -12,8 +12,6 @@ class Test extends imported.MetaProtocol {
 
   stop () {}
 
-  validateConfiguration () {}
-
   getProtocolPublicMethods () {
     return {
       aNamedFunction: () => {},

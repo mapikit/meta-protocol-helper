@@ -1,6 +1,8 @@
 import { validateProtocol } from "../src/bin/validate-protocol";
-import { asyncTestThrow } from "./helpers/test-throw";
+import { asyncTestThrow, testThrow } from "./helpers/test-throw";
 import { expect } from "chai";
+import { FunctionManager, getClassConstructor, getDescriptorFileContent } from "@meta-system/meta-function-helper";
+import { MetaProtocol } from "../src/meta-protocol";
 
 describe("Full Protocol Validation", () => {
   // We will only test the properties and the class here
@@ -74,15 +76,6 @@ describe("Full Protocol Validation", () => {
       expect(result.thrown).to.be.true;
     });
 
-    it("Fails for a class with missing \"validateConfiguration\" method", async () => {
-      const result = await asyncTestThrow(async () => {
-        await validateProtocol("./test/test-data/badly-defined-classes/missing-validateconfiguration-method/");
-      });
-
-      expect(result.error.message).to.contain("method \"validateConfiguration\"");
-      expect(result.thrown).to.be.true;
-    });
-
     it("Fails for a class with missing \"getProtocolPublicMethods\" method", async () => {
       const result = await asyncTestThrow(async () => {
         await validateProtocol("./test/test-data/badly-defined-classes/missing-getpublicmethods-method/");
@@ -100,6 +93,39 @@ describe("Full Protocol Validation", () => {
 
       expect(result.error.message).to.contain("function \"aNamedFunction\" must be present");
       expect(result.thrown).to.be.true;
+    });
+  });
+  describe("Fully Working Protocol", () => {
+    it("Validates successfully", async () => {
+      const result = await asyncTestThrow(async () => {
+        await validateProtocol("./test/test-data/protocol-methods");
+      });
+
+      expect(result.error).to.be.undefined;
+      expect(result.thrown).to.be.false;
+    });
+
+    it("Receives and validates the argument correctly", async () => {
+      const Newable = await getClassConstructor(
+        "./test/test-data/protocol-methods", "./test.js", "Test",
+      ) as new (config : unknown, manager : FunctionManager) => MetaProtocol<unknown>;
+      const descriptor = await getDescriptorFileContent("./test/test-data/protocol-methods", "meta-protocol.json");
+
+      const config = { sumNumber: 8 };
+      const managerStub = {
+        get: () : Function => () : void => { void 0;},
+      };
+      const valueToSum = 45;
+
+      const instance = new Newable(config, managerStub);
+      const validation = testThrow(() : void => { instance.validateConfiguration(descriptor["configurationFormat"]); });
+      const callables = instance.getProtocolPublicMethods();
+
+      const result = callables["sum"]({ initialNumber: valueToSum });
+
+      expect(validation.error).to.be.undefined;
+      expect(validation.thrown).to.be.false;
+      expect(result["sum"]).to.be.equal(valueToSum + config.sumNumber);
     });
   });
 });

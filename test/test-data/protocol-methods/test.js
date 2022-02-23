@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const imported = require("../../../../dist/index");
+const imported = require("../../../dist/index");
 
 class Test extends imported.MetaProtocol {
-  constructor () {
-    super();
+  constructor (config, bopsManager) {
+    super(config, bopsManager);
   }
 
   start () {}
@@ -14,7 +14,7 @@ class Test extends imported.MetaProtocol {
 
   getProtocolPublicMethods () {
     return {
-      aNamedFunction: () => {},
+      sum: ({ initialNumber }) => ({ sum: initialNumber + this.protocolConfiguration.sumNumber }),
     };
   }
 }

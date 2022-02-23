@@ -1,3 +1,4 @@
+import { checkValidObjectDefinition } from "./object-definition-check";
 import { valid } from "semver";
 import { error } from "./chalk-formatting";
 import { ValidationErrorCodes } from "./error-codes";
@@ -30,4 +31,6 @@ export function isMetaProtocol (input : unknown) : asserts input is MetaProtocol
   if (typeof protocolLikeInput.className !== "string") {
     throw Error(error(ValidationErrorCodes.V05P));
   }
+
+  checkValidObjectDefinition(protocolLikeInput.configurationFormat);
 }

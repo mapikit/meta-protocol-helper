@@ -1,0 +1,18 @@
+{
+  "protocolName": "test-protocol",
+  "description": "a test protocol",
+  "version": "1.0.0",
+  "entrypoint": "./test.js",
+  "className": "Test",
+  "functionDefinitions": [
+    {
+      "functionName": "sum",
+      "output": { "sum": { "type": "number", "required": true } },
+      "input": { "initialNumber": { "type": "number", "required": true } },
+      "description": "Sum the argument to the number"
+    }
+  ],
+  "configurationFormat": {
+    "sumNumber": { "type": "number", "required": true }
+  }
+}

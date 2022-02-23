@@ -2,6 +2,7 @@ import { checkSchemaDiff } from "./db-protocols-tools/get-schema-diff";
 import { SchemaType } from "./type/schema-types";
 import { getQueryPerProperty } from "./db-protocols-tools/get-query-per-property";
 import { QueryType } from "./type/db-protocol-types";
+import { ObjectDefinition, validateObject } from "@meta-system/object-definition";
 
 export type SchemaList = Array<SchemaType>
 
@@ -49,7 +50,19 @@ export abstract class DBProtocol<ProtocolConfig> {
   public abstract verifySchemaSupport () : void;
 
   // Utils methods
-  public abstract validateConfiguration () : void;
+  public validateConfiguration (configurationSchema : ObjectDefinition) : void {
+    const result = validateObject(this.protocolConfiguration, configurationSchema);
+
+    if (result.errors.length >= 1) {
+      console.log("[ FATAL ] Errors encountered during protocol configuration validation:");
+      result.errors.forEach((error) => {
+        console.log(error);
+      });
+
+      console.log("Due to these errors, the system will not boot.");
+      throw "Failed configuration check for Protocol!";
+    }
+  }
 
   /**
    * Method called to start the connection to the database.

@@ -1,6 +1,6 @@
 {
   "name": "@meta-system/meta-protocol-helper",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "A helper to validate your protocol configurations while developing a protocol for Meta-System",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/mapikit/meta-protocol-helper",
   "dependencies": {
     "@meta-system/meta-function-helper": "^0.3.1",
-    "@meta-system/object-definition": "^1.0.6",
+    "@meta-system/object-definition": "^1.1.1",
     "chalk": "^4.1.0",
     "deep-diff": "^1.0.2",
     "semver": "^7.3.4"

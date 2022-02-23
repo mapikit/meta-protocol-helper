@@ -1,4 +1,5 @@
 import { FunctionDefinition } from "@meta-system/meta-function-helper";
+import { ObjectDefinition } from "@meta-system/object-definition";
 
 export interface MetaProtocolDefinition {
   protocolName : string;
@@ -8,6 +9,7 @@ export interface MetaProtocolDefinition {
   entrypoint : string;
   className : string;
   functionDefinitions ?: Array<string | FunctionDefinition>;
+  configurationFormat : ObjectDefinition;
 }
 
 export interface BuiltMetaProtocolDefinition {
@@ -18,4 +20,5 @@ export interface BuiltMetaProtocolDefinition {
   entrypoint : string;
   className : string;
   functionDefinitions ?: FunctionDefinition[];
+  configurationFormat : ObjectDefinition;
 }
