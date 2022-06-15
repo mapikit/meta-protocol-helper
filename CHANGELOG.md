@@ -1,4 +1,6 @@
 # Releases
+## 0.3.2 - Bump Dependencies versions
+
 ## 0.3.1 - Object Definition [Dependency] Version Bump
 Bump the version of Object Defintion.
 
