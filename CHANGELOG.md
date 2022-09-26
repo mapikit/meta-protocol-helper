@@ -1,8 +1,11 @@
 # Releases
+## 0.3.3 - Fix getQueryPerProperty 
+Fix the getQueryPerProperty function for objects where all properties are hidden.
+
 ## 0.3.2 - Bump Dependencies versions
 
 ## 0.3.1 - Object Definition [Dependency] Version Bump
-Bump the version of Object Defintion.
+Bump the version of Object Definition.
 
 ## 0.3.0 - Protocols Configuration Revamp
 The library now requires you to describe the format of the configuration object required by your protocol. Use the "meta-protocol.json" file for this, with a new key: `"configurationFormat"`, and the value must follow the Object Definition format.

@@ -30,7 +30,7 @@ const getQueryPaths = (object : Record<string, unknown>) : string[] => {
   const result = [];
   Object.keys(object).forEach((key) => {
     const value = object[key];
-    if (typeof value === "object" && !Array.isArray(value)) {
+    if (typeof value === "object" && !Array.isArray(value) && Object.keys(value).length > 0) {
       isRecord(value);
       const innerObj = getQueryPaths(value);
       innerObj.forEach((innerPath) => {
