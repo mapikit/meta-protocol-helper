@@ -15,4 +15,5 @@ export enum ValidationErrorCodes {
   V10P = "V10P - GetPublicMethods function must return an object",
   V11P = "V11P - The class does not exist on the given entrypoint",
   ValidatedProtocolNotObject = "The protocol definition must be an object",
+  MissingConfigurationFormat = "The protocol definition is missing a \"configurationFormat\""
 }

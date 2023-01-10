@@ -1,0 +1,15 @@
+{
+  "protocolName": "a-test-protocol",
+  "description": "a test protocol",
+  "version": "1.0.0",
+  "entrypoint": "./test.js",
+  "className": "aClass",
+  "functionDefinitions": [
+    {
+      "functionName": "aNamedFunction",
+      "output": {},
+      "input": {},
+      "description": "some description"
+    }
+  ]
+}

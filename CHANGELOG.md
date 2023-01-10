@@ -1,4 +1,7 @@
 # Releases
+## 0.3.4 - Improve error messaging
+Improved error message when protocol is configuration is missing `"configurationFormat"`
+
 ## 0.3.3 - Fix getQueryPerProperty 
 Fix the getQueryPerProperty function for objects where all properties are hidden.
 

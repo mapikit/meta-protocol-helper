@@ -53,6 +53,15 @@ describe("Full Protocol Validation", () => {
       expect(result.error.message).to.contain("ClassName");
       expect(result.thrown).to.be.true;
     });
+
+    it("Fails validation for a protocol definition that lacks configurationFormat", async () => {
+      const result = await asyncTestThrow(async () => {
+        await validateProtocol("./test/test-data/badly-defined-protocols/missing-configurationFormat");
+      });
+
+      expect(result.error.message).to.contain("configurationFormat");
+      expect(result.thrown).to.be.true;
+    });
   });
 
   describe("Class Validation", () => {

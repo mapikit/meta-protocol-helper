@@ -32,5 +32,9 @@ export function isMetaProtocol (input : unknown) : asserts input is MetaProtocol
     throw Error(error(ValidationErrorCodes.V05P));
   }
 
+  if (protocolLikeInput.configurationFormat === undefined) {
+    throw Error(error(ValidationErrorCodes.MissingConfigurationFormat));
+  }
+
   checkValidObjectDefinition(protocolLikeInput.configurationFormat);
 }
