@@ -5,7 +5,7 @@ export interface MetaProtocolDefinition {
   protocolName : string;
   description : string;
   author ?: string;
-  version : string; // Must be SemVer
+  version ?: string; // If present, must be SemVer and match package.json
   entrypoint : string;
   className : string;
   functionDefinitions ?: Array<string | FunctionDefinition>;
@@ -16,7 +16,7 @@ export interface BuiltMetaProtocolDefinition {
   protocolName : string;
   description : string;
   author ?: string;
-  version : string; // Must be SemVer
+  version ?: string; // If present, must be SemVer and match package.json
   entrypoint : string;
   className : string;
   functionDefinitions ?: FunctionDefinition[];

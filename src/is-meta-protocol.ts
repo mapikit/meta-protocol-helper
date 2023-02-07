@@ -20,7 +20,7 @@ export function isMetaProtocol (input : unknown) : asserts input is MetaProtocol
     throw Error(error(ValidationErrorCodes.V02P));
   }
 
-  if (valid(protocolLikeInput.version) === null) {
+  if (protocolLikeInput.version !== undefined && valid(protocolLikeInput.version) === null) {
     throw Error(error(ValidationErrorCodes.V03P));
   }
 

@@ -14,6 +14,7 @@ export enum ValidationErrorCodes {
   V09P = "V09P - You must define an array of functions definitions when declaring a package",
   V10P = "V10P - GetPublicMethods function must return an object",
   V11P = "V11P - The class does not exist on the given entrypoint",
+  V12P = "V12P - Mismatch between meta-protocol and package version",
   ValidatedProtocolNotObject = "The protocol definition must be an object",
   MissingConfigurationFormat = "The protocol definition is missing a \"configurationFormat\""
 }
