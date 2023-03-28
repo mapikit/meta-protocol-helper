@@ -1,9 +1,11 @@
-meta-protocol.json
+meta-function.json
+meta-package.json
 node_modules
 tsconfig.json
-tsconfig.base.json
-tsconfig.build.json
 src/*
 index.ts
-test-data
-test
+/test-files/*
+/test/
+.eslintrc.js
+.mocharc.json
+.gitignore

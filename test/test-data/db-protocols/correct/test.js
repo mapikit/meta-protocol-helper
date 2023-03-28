@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const imported = require("../../../../dist/index");
+import { DBProtocol } from "../../../../dist/index";
 
-class TestDBProtocol extends imported.DBProtocol {
+export class TestDBProtocol extends DBProtocol {
   constructor () {
     super();
   }
@@ -31,7 +31,3 @@ class TestDBProtocol extends imported.DBProtocol {
   find () {}
   count () {}
 }
-
-module.exports = {
-  TestDBProtocol,
-};

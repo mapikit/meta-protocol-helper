@@ -1,6 +1,9 @@
 import { ObjectDefinition } from "@meta-system/object-definition";
-import { Diff, diff } from "deep-diff";
-import { SchemaType } from "../type/schema-types";
+import deepDiff from "deep-diff";
+import { SchemaType } from "../type/schema-types.js";
+import type { Diff } from "deep-diff";
+
+const { diff } = deepDiff;
 
 export const checkSchemaDiff =
 (currentSchemas : Array<SchemaType>, newVersion : Array<SchemaType>) : Record<string, CompleteSchemaDiff> => {

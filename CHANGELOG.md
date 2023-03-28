@@ -1,4 +1,5 @@
 # Releases
+## 0.4.2 - Rewrite using Ecma Script modules instead of CJS
 ## 0.3.4 - Improve error messaging
 Improved error message when protocol is configuration is missing `"configurationFormat"`
 

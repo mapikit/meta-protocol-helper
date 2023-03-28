@@ -1,8 +1,8 @@
-import { checkValidObjectDefinition } from "./object-definition-check";
+import { checkValidObjectDefinition } from "./object-definition-check.js";
 import { valid } from "semver";
-import { error } from "./chalk-formatting";
-import { ValidationErrorCodes } from "./error-codes";
-import { MetaProtocolDefinition } from "./type/meta-protocol-type";
+import { error } from "./chalk-formatting.js";
+import { ValidationErrorCodes } from "./error-codes.js";
+import { MetaProtocolDefinition } from "./type/meta-protocol-type.js";
 
 // eslint-disable-next-line max-lines-per-function
 export function isMetaProtocol (input : unknown) : asserts input is MetaProtocolDefinition {

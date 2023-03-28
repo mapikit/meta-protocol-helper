@@ -1,8 +1,8 @@
-import { validateProtocol } from "../src/bin/validate-protocol";
-import { asyncTestThrow, testThrow } from "./helpers/test-throw";
+import { validateProtocol } from "../src/bin/validate-protocol.js";
+import { asyncTestThrow, testThrow } from "./helpers/test-throw.js";
 import { expect } from "chai";
 import { FunctionManager, getClassConstructor, getDescriptorFileContent } from "@meta-system/meta-function-helper";
-import { MetaProtocol } from "../src/meta-protocol";
+import { MetaProtocol } from "../src/meta-protocol.js";
 
 describe("Full Protocol Validation", () => {
   // We will only test the properties and the class here

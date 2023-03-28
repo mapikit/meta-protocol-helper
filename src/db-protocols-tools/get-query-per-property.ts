@@ -1,5 +1,5 @@
-import { getObjectProperty } from "./get-object-property";
-import { QueryOperation, QueryType } from "../type/db-protocol-types";
+import { getObjectProperty } from "./get-object-property.js";
+import { QueryOperation, QueryType } from "../type/db-protocol-types.js";
 
 // { path: rule }
 type QueryPerPath = {

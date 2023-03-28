@@ -1,7 +1,7 @@
-import { checkSchemaDiff } from "./db-protocols-tools/get-schema-diff";
-import { SchemaType } from "./type/schema-types";
-import { getQueryPerProperty } from "./db-protocols-tools/get-query-per-property";
-import { QueryType } from "./type/db-protocol-types";
+import { checkSchemaDiff } from "./db-protocols-tools/get-schema-diff.js";
+import { SchemaType } from "./type/schema-types.js";
+import { getQueryPerProperty } from "./db-protocols-tools/get-query-per-property.js";
+import { QueryType } from "./type/db-protocol-types.js";
 import { ObjectDefinition, validateObject } from "@meta-system/object-definition";
 
 export type SchemaList = Array<SchemaType>

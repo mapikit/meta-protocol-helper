@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const imported = require("../../../../dist/index");
+import { MetaProtocol } from "../../../../dist/index";
 
-class Test extends imported.MetaProtocol {
+export class Test extends MetaProtocol {
   constructor () {
     super();
   }
@@ -20,7 +20,3 @@ class Test extends imported.MetaProtocol {
     };
   }
 }
-
-module.exports = {
-  Test,
-};

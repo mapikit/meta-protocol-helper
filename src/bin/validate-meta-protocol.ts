@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { validateProtocol } from "./validate-protocol";
+import { validateProtocol } from "./validate-protocol.js";
 
 const main = async () : Promise<void> => {
   await validateProtocol();

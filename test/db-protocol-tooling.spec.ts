@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { getQueryPerProperty } from "../src/db-protocols-tools/get-query-per-property";
-import { checkSchemaDiff } from "../src/db-protocols-tools/get-schema-diff";
-import { SchemaType } from "../src/type/schema-types";
+import { getQueryPerProperty } from "../src/db-protocols-tools/get-query-per-property.js";
+import { checkSchemaDiff } from "../src/db-protocols-tools/get-schema-diff.js";
+import { SchemaType } from "../src/type/schema-types.js";
 
 describe("DbProtocols Tooling", () => {
   describe("Get Query Paths", () => {
